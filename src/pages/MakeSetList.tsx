@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Container, Loader } from "../common";
+import { Container, Loader, Heading } from "../common";
 import { RouteComponentProps } from "react-router";
 import SongList from "../components/SongList";
 import AddTrack from "../components/AddTrack";
@@ -25,20 +25,33 @@ class MakeSetList extends Component<Props, State> {
     }));
   };
 
+  public handleRemove(index: number) {
+    this.setState(state => {
+      const newSetList = [...state.setList];
+      newSetList.splice(index, 1);
+      return { setList: newSetList };
+    });
+  }
+
   public render() {
     const { artist } = this.props.match.params;
     const { setList } = this.state;
     return (
       <Container>
-        <h1>Start Building your list</h1>
+        <Heading>Start Building your list for {artist}</Heading>
         <SongList artist={artist}>
           {({ loading, tracks }) => {
             return loading && tracks && tracks.length ? (
               <Loader />
             ) : (
               <Fragment>
-                {setList.map(track => (
-                  <SetListItem key={track.name} track={track} />
+                {setList.map((track, index) => (
+                  <SetListItem
+                    key={track.name}
+                    track={track}
+                    position={index + 1}
+                    onRemove={this.handleRemove.bind(this, index)}
+                  />
                 ))}
                 <AddTrack tracks={tracks || []} onChange={this.handleAddSong} />
               </Fragment>

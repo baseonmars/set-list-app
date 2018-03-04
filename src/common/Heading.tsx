@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "./styled-components";
+import styled, { theme } from "./styled-components";
 
 type Sizes = "s" | "m" | "l";
 type Levels = 1 | 2 | 3 | 4 | 5 | 6;
@@ -23,8 +23,10 @@ const sizes = {
 const Heading: React.SFC<Props> = props => {
   const { level } = props as DefaultProps;
 
+  // TODO why is theme typed incorrectly here?
   const H = styled[`h${level}`]`
     font-size: ${(p: DefaultProps) => sizes[p.size]};
+    color: ${theme.text};
   `;
 
   return <H>{props.children}</H>;

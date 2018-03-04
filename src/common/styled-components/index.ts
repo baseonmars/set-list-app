@@ -15,5 +15,13 @@ interface StyledComponent {
   className?: string;
 }
 
-export { css, injectGlobal, keyframes, ThemeProvider, theme, StyledComponent };
+export {
+  css,
+  injectGlobal,
+  keyframes,
+  ThemeProvider,
+  Theme,
+  theme,
+  StyledComponent
+};
 export default styled;

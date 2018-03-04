@@ -16,9 +16,11 @@ const MenuItem: React.SFC<MenuItem> = ({ track, className, itemProps }) => (
 );
 
 const StyledMenuItem = styled(MenuItem)`
-  padding: 8px 0;
+  padding: 8px 4px;
+  color: ${({ theme }) => theme.text};
   border-bottom: 1px solid ${props => props.theme.dividerColor};
-  background-color: ${props => (props.highlighted ? "gray" : "white")};
+  background-color: ${({ theme, ...props }) =>
+    props.highlighted ? theme.lightPrimary : "white"};
   font-weight: ${props => (props.selected ? "bold" : "normal")};
 `;
 

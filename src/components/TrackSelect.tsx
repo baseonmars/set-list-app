@@ -28,7 +28,10 @@ const TrackSelect: React.SFC<Props> = ({
   <div ref={innerRef}>
     <Field>
       <Input
-        {...getInputProps({ placeholder: `What's playing?`, value: "" })}
+        {...getInputProps({
+          placeholder: `What are they playing?`,
+          value: inputValue || ""
+        })}
       />
       {isOpen ? (
         <div style={{ border: "1px solid #ccc" }}>
