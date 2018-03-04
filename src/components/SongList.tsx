@@ -1,15 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, ReactNode, Fragment } from "react";
 import { graphql, QueryProps, ChildProps } from "react-apollo";
 import gql from "graphql-tag";
-
-interface Track {
-  name: string;
-}
+import { Loader } from "../common";
+import { Track } from "../../typings/entities";
 
 interface Props {
   artist: string;
   tracks?: Track[];
   loading?: boolean;
+  children: (args: { tracks?: Track[]; loading: boolean }) => ReactNode;
 }
 
 interface Response {
@@ -22,12 +21,20 @@ interface InputProps extends Props {
 
 type CProps = ChildProps<InputProps, Response>;
 
+interface DefaultProps extends Props {
+  loading: boolean;
+  tracks: Track[];
+}
+
 class SongList extends Component<CProps, {}> {
+  public static defaultProps = {
+    loading: false,
+    tracks: []
+  };
+
   public render() {
-    const { loading, tracks } = this.props;
-    return !loading && tracks && tracks.length ? (
-      <ul>{tracks.map(t => <li key={t.name}>{t.name}</li>)}</ul>
-    ) : null;
+    const { children, loading, tracks } = this.props as DefaultProps;
+    return <Fragment>{children({ loading, tracks })}</Fragment>;
   }
 }
 

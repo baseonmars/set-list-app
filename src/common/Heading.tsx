@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "./styled-components";
 
 type Sizes = "s" | "m" | "l";
 type Levels = 1 | 2 | 3 | 4 | 5 | 6;

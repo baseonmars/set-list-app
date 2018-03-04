@@ -40,9 +40,9 @@ server
   .get("/graphiql", graphiqlExpress({ endpointURL: "/graphql" }))
   .get("/*", async (req, res) => {
     const client = createApolloClient({ ssrMode: true });
+    const sheet = new ServerStyleSheet();
 
     const customRenderer = (node: Node) => {
-      const sheet = new ServerStyleSheet();
       const App = (
         <ThemeProvider theme={theme}>
           <ApolloProvider client={client}>{node}</ApolloProvider>

@@ -1,4 +1,13 @@
 {
-  "presets": ["razzle/babel", "flow"],
+  "presets": [
+    [
+      "razzle/babel",
+      { "plugins": [["babel-plugin-styled-components", { "ssr": true }]] }
+    ],
+    [
+      "flow",
+      { "plugins": [["babel-plugin-styled-components", { "ssr": true }]] }
+    ]
+  ],
   "plugins": [["babel-plugin-styled-components", { "ssr": true }]]
 }

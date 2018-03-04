@@ -13,14 +13,6 @@ export default [
     })
   },
   {
-    path: "(/|/setlist/create)",
-    exact: true,
-    component: asyncComponent({
-      loader: () => import("./pages/CreateSetList"),
-      Placeholder: () => <Loader />
-    })
-  },
-  {
     path: "/setlist/make/:artist",
     exact: true,
     component: asyncComponent({
@@ -32,7 +24,7 @@ export default [
     path: "/palette",
     exact: true,
     component: asyncComponent({
-      loader: () => import("./pages/ColorPalette"),
+      loader: () => import("./common/styled-components/ColorPalette"),
       Placeholder: () => <Loader />
     })
   }

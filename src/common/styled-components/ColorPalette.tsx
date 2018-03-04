@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Container, Heading } from "../common";
-import styled, { theme } from "../common/styled-components";
-import ColorTile from "../common/styled-components/ColorTile";
+import { Container, Heading } from "../../common";
+import styled, { theme } from "../../common/styled-components";
+import ColorTile from "../../common/styled-components/ColorTile";
 
 const Palette = styled.div`
   display: flex;
