@@ -2,12 +2,10 @@ import React from "react";
 import { AfterRoot, AfterData } from "@jaredpalmer/after";
 import { HelmetData } from "react-helmet";
 import { InitialProps } from "./server";
+import { ServerStyleSheet } from "styled-components";
 
-interface Props {
+interface Props extends InitialProps {
   helmet: HelmetData;
-  assets: KeyValueObject;
-  data: KeyValueObject;
-  initialApolloState: KeyValueObject;
 }
 
 class Document extends React.Component<Props> {
@@ -21,7 +19,7 @@ class Document extends React.Component<Props> {
   }
 
   public render() {
-    const { helmet, assets, data, initialApolloState } = this.props;
+    const { helmet, assets, data, initialApolloState, styleTags } = this.props;
     // get attributes from React Helmet
     const htmlAttrs = helmet.htmlAttributes.toComponent();
     const bodyAttrs = helmet.bodyAttributes.toComponent();
@@ -31,7 +29,7 @@ class Document extends React.Component<Props> {
         <head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />
-          <title>Welcome to the Afterparty</title>
+          <title>SetLists</title>
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           {helmet.title.toComponent()}
           {helmet.meta.toComponent()}
@@ -39,6 +37,7 @@ class Document extends React.Component<Props> {
           {assets.client.css && (
             <link rel="stylesheet" href={assets.client.css} />
           )}
+          {styleTags}
         </head>
         <body {...bodyAttrs}>
           <AfterRoot />

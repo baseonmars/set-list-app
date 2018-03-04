@@ -6,17 +6,20 @@ import { ApolloProvider } from "react-apollo";
 import "./css/client.css";
 import routes from "./routes";
 import createApolloClient from "./lib/createApolloClient";
+import { ThemeProvider, theme } from "./common/styled-components";
 
 const client = createApolloClient({ ssrMode: false });
 
 ensureReady(routes).then(data => {
   const props = { data, routes }; // this is a work around for Property 'data' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<Component<Pick<any, never>, ComponentState>> & Rea...'.
   return hydrate(
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <After {...props} />
-      </BrowserRouter>
-    </ApolloProvider>,
+    <ThemeProvider theme={theme}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <After {...props} />
+        </BrowserRouter>
+      </ApolloProvider>
+    </ThemeProvider>,
     document.getElementById("root")
   );
 });

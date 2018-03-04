@@ -1,4 +1,4 @@
 {
   "presets": ["razzle/babel", "flow"],
-  "plugins": []
+  "plugins": [["babel-plugin-styled-components", { "ssr": true }]]
 }
